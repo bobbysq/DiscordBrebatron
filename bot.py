@@ -32,7 +32,7 @@ async def amlookup(productNo : int):
     part = andymark_item(productNo)
     if part:
         #print(part)
-        await bot.say("The item you looked up is a "+part[1]+". It costs "+part[2]+".")
+        await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
     else:
         await bot.say("Item not found.")
 
