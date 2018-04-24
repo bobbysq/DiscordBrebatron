@@ -6,8 +6,8 @@ import json
 import csv
 import random
 
-class andymark_item(partnumber):
-    def __init__(self, url, name, price):
+class andymark_item:
+    def __init__(self, partnumber):
         url = 'http://www.andymark.com/product-p/am-'+str(partnumber)+'.htm'
         r = urllib.request.urlopen(url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
         try:
@@ -16,13 +16,13 @@ class andymark_item(partnumber):
             soup = BeautifulSoup(r, "html.parser")
         prices = soup.find_all("span", itemprop="price")
         if soup.title.get_text()=="AndyMark Robot Parts Kits Mecanum Omni Wheels":
-            name = None
-            price = None
+            self.name = None
+            self.price = None
         else:
-            name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
+            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
             #print(price[0].text)
             #money = price[0].text.encode('utf8','ignore')
-            price = prices[0].get_text()
+            self.price = prices[0].get_text()
 
 def vex_item(partnumber):
     url = 'http://www.vexrobotics.com/'+str(partnumber)+'.html'
