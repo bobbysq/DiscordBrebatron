@@ -24,20 +24,21 @@ class andymark_item:
             #money = price[0].text.encode('utf8','ignore')
             self.price = prices[0].get_text()
 
-def vex_item(partnumber):
-    url = 'http://www.vexrobotics.com/'+str(partnumber)+'.html'
-    r = urllib.request.urlopen(url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
-    try:
-        soup = BeautifulSoup(r, "lxml")
-    except:
-        soup = BeautifulSoup(r, "html.parser")
-    price = soup.find_all("span", class_="price")
-    if soup.title.get_text()=="404: Page Not Found  - VEX Robotics":
-        return(None) #404 checking
-    else:
-        name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
-        money = price[0].get_text()
-        return([url, name, money])
+class vex_item:
+    def __init__(self, partnumber):
+        self.url = 'http://www.vexrobotics.com/'+str(partnumber)+'.html'
+        r = urllib.request.urlopen(self.url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
+        try:
+            soup = BeautifulSoup(r, "lxml")
+        except:
+            soup = BeautifulSoup(r, "html.parser")
+        prices = soup.find_all("span", class_="price")
+        if soup.title.get_text()=="404: Page Not Found  - VEX Robotics":
+            self.name = None
+            self.price = None
+        else:
+            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
+            self.price = prices[0].get_text()
 
 def tbaGetName(team, appid, auth):
     try:

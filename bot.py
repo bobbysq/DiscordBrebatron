@@ -41,6 +41,22 @@ async def amlookup(productNo : str):
         await bot.say("Item not found.")
 
 @bot.command()
+async def vexlookup(productNo : str):
+    """Looks up a part on VEX Robotics."""
+    part = vex_item(productNo)
+    if part:
+        #print(part)
+        msg = discord.Embed(title=part.name, url = part.url)
+        thumbUrl="https://www.vexrobotics.com/media/catalog/product/cache/1/" +\
+        "small_image/300x/17f82f742ffe127f42dca9de82fb58b1/2/1/" + productNo + ".jpg"
+        msg.set_thumbnail(url=thumbUrl)
+        msg.add_field(name="Price",value=part.price)
+        await bot.say(embed=msg)
+        # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
+    else:
+        await bot.say("Item not found.")
+
+@bot.command()
 async def tba(teamNo : str):
     """Finds a team on The Blue Alliance"""
     teamName = tbaGetName(teamNo, TBA_APP_ID, TBA_AUTH_KEY)
