@@ -32,7 +32,7 @@ async def amlookup(productNo : str):
     part = andymark_item(productNo)
     if part:
         #print(part)
-        msg = discord.Embed(title=part.name, url = part.url)
+        msg = discord.Embed(title=part.name, url = part.url, color = 0x0000ff)
         msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
         msg.add_field(name="Price",value=part.price)
         await bot.say(embed=msg)
@@ -46,7 +46,7 @@ async def vexlookup(productNo : str):
     part = vex_item(productNo)
     if part:
         #print(part)
-        msg = discord.Embed(title=part.name, url = part.url)
+        msg = discord.Embed(title=part.name, url = part.url, color = 0x00ff00)
         thumbUrl="https://www.vexrobotics.com/media/catalog/product/cache/1/" +\
         "small_image/300x/17f82f742ffe127f42dca9de82fb58b1/2/1/" + productNo + ".jpg"
         msg.set_thumbnail(url=thumbUrl)
