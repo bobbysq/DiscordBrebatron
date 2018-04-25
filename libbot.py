@@ -8,8 +8,8 @@ import random
 
 class andymark_item:
     def __init__(self, partnumber):
-        url = 'http://www.andymark.com/product-p/am-'+str(partnumber)+'.htm'
-        r = urllib.request.urlopen(url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
+        self.url = 'http://www.andymark.com/product-p/am-'+ partnumber +'.htm'
+        r = urllib.request.urlopen(self.url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
         try:
             soup = BeautifulSoup(r, "lxml")
         except:

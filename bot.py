@@ -27,12 +27,16 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name=CURRENT_GAME))
 
 @bot.command()
-async def amlookup(productNo : int):
+async def amlookup(productNo : str):
     """Looks up a part on AndyMark."""
     part = andymark_item(productNo)
     if part:
         #print(part)
-        await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
+        msg = discord.Embed(title=part.name, url = part.url)
+        msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
+        msg.add_field(name="Price",value=part.price)
+        await bot.say(embed=msg)
+        # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
     else:
         await bot.say("Item not found.")
 
