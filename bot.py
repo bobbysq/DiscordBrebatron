@@ -89,4 +89,13 @@ async def tsimfd():
     mfWord = random.choice(MF_WORDS)
     await bot.say("This "+sWord+" is "+mfWord+" dope. That's it.")
 
+@bot.command()
+async def rng(sides : int):
+    """Generates a random number"""
+    if (sides >= 1):
+        number = random.randint(1,sides+1)
+        await bot.say(number)
+    else:
+        await bot.say("How am I supposed to roll a "+number+" sided die?")
+
 bot.run(DISCORD_TOKEN)
