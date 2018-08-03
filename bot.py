@@ -18,6 +18,8 @@ MF_WORDS =["Monday-Friday","monkey-fightin","megaphonin","mighty flippin","Marty
 description = '''Brebatron is back in twon.'''
 bot = commands.Bot(command_prefix='~', description=description)
 
+random.seed()
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -93,7 +95,7 @@ async def tsimfd():
 async def rng(sides : int):
     """Generates a random number"""
     if (sides >= 1):
-        number = random.randint(1,sides+1)
+        number = random.randint(1,side)
         await bot.say(number)
     else:
         await bot.say("How am I supposed to roll a "+number+" sided die?")
