@@ -98,6 +98,6 @@ async def rng(sides : int):
         number = random.randint(1,sides)
         await bot.say(number)
     else:
-        await bot.say("How am I supposed to roll a "+sides+" sided die?")
+        await bot.say("How am I supposed to roll a "+ str(sides) +" sided die?")
 
 bot.run(DISCORD_TOKEN)
