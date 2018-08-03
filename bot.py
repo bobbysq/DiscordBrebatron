@@ -95,7 +95,11 @@ async def tsimfd():
 async def rng(sides : int):
     """Generates a random number"""
     if (sides >= 1):
+<<<<<<< HEAD
         number = random.randint(1,sides)
+=======
+        number = random.randint(1,side)
+>>>>>>> 64c5f736d4e325ed549b4b64eda153b2e3ca2ae0
         await bot.say(number)
     else:
         await bot.say("How am I supposed to roll a "+number+" sided die?")
