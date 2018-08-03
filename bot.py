@@ -23,6 +23,9 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
+    print("Add bot at:")
+    print("https://discordapp.com/oauth2/authorize?&client_id=" + \
+    bot.user.id + "&scope=bot&permissions=0")
     print('------')
     await bot.change_presence(game=discord.Game(name=CURRENT_GAME))
 
@@ -30,10 +33,11 @@ async def on_ready():
 async def amlookup(productNo : str):
     """Looks up a part on AndyMark."""
     part = andymark_item(productNo)
-    if part:
+    if part.name:
         #print(part)
-        msg = discord.Embed(title=part.name, url = part.url, color = 0x0000ff)
+        msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x0000ff)
         msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
+        msg.add_field(name="Name",value=part.name)
         msg.add_field(name="Price",value=part.price)
         await bot.say(embed=msg)
         # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
@@ -44,12 +48,13 @@ async def amlookup(productNo : str):
 async def vexlookup(productNo : str):
     """Looks up a part on VEX Robotics."""
     part = vex_item(productNo)
-    if part:
+    if part.name:
         #print(part)
-        msg = discord.Embed(title=part.name, url = part.url, color = 0x00ff00)
+        msg = discord.Embed(title="VEX Product", url = part.url, color = 0x00ff00)
         thumbUrl="https://www.vexrobotics.com/media/catalog/product/cache/1/" +\
         "small_image/300x/17f82f742ffe127f42dca9de82fb58b1/2/1/" + productNo + ".jpg"
         msg.set_thumbnail(url=thumbUrl)
+        msg.add_field(name="Name",value=part.name)
         msg.add_field(name="Price",value=part.price)
         await bot.say(embed=msg)
         # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")

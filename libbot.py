@@ -19,7 +19,7 @@ class andymark_item:
             self.name = None
             self.price = None
         else:
-            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
+            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text()).strip()
             #print(price[0].text)
             #money = price[0].text.encode('utf8','ignore')
             self.price = prices[0].get_text()
@@ -37,7 +37,7 @@ class vex_item:
             self.name = None
             self.price = None
         else:
-            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())
+            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())[:-15]
             self.price = prices[0].get_text()
 
 def tbaGetName(team, appid, auth):
