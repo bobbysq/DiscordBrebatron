@@ -103,4 +103,9 @@ async def rng(sides : int):
     else:
         await bot.say("How am I supposed to roll a "+ str(sides) +" sided die?")
 
+@bot.command()
+async def source():
+    """Links the source code"""
+    await bot.say("Source code located at https://gitlab.com/bobbysq/DiscordBrebatron")
+
 bot.run(DISCORD_TOKEN)
