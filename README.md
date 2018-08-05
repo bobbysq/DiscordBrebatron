@@ -1,4 +1,4 @@
-# Team ASAP Discord bot
+# Bobbysq's Discord bot
 
 Uses:
 * discord.py
@@ -12,14 +12,9 @@ Before you run this bot, please change the config file options to change the TBA
 
 Current Commands:
 * !amlookup [part #]: Lookup a part on AndyMark
-* ~~!nextmeeting: Find out when the next meeting is (WIP)~~
 * ~~!about: Links back here~~
 * !tba: looks up teams from thebluealliance.com
-* ~~!kill: Kill the bot (admin only)~~
-* ~~!manual: Links the game manual~~
 * !vexlookup [part #]: vex part lookup
 * !tsimfd: Dispenses knowledge from the 2016 FIRST Championship
 * !quote: Summons a quote from Chief Delphi
 * !robit: Summons a quote from a famous movie robot
-* ~~!discord: Sends out a link to the discord for voice chat~~
-* ~~Hi Bot!: Say hello to the Bot~~
