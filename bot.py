@@ -68,7 +68,10 @@ async def tba(teamNo : str):
     """Finds a team on The Blue Alliance"""
     teamName = libbot.tbaGetName(teamNo, TBA_APP_ID, TBA_AUTH_KEY)
     if teamName:
-        await bot.say("TBA Link to team "+teamNo+", "+teamName+": https://thebluealliance.com/team/"+teamNo)
+        msg = discord.Embed(title=teamName, url =  "https://thebluealliance.com/team/"+teamNo, color = 0x0000ff)
+        msg.add_field(name="Name",value=teamName)
+        msg.add_field(name="Number",value=teamNo)
+        await bot.say(embed=msg)
     else:
         await bot.say("TBA Link to team: https://thebluealliance.com/team/"+teamNo)
 
