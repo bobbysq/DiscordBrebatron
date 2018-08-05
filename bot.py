@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import configparser
-from libbot import *
+import libbot
 import random
 
 config = configparser.ConfigParser()
@@ -34,7 +34,7 @@ async def on_ready():
 @bot.command()
 async def amlookup(productNo : str):
     """Looks up a part on AndyMark."""
-    part = andymark_item(productNo)
+    part = libbot.andymark_item(productNo)
     if part.name:
         #print(part)
         msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x0000ff)
@@ -49,7 +49,7 @@ async def amlookup(productNo : str):
 @bot.command()
 async def vexlookup(productNo : str):
     """Looks up a part on VEX Robotics."""
-    part = vex_item(productNo)
+    part = libbot.vex_item(productNo)
     if part.name:
         #print(part)
         msg = discord.Embed(title="VEX Product", url = part.url, color = 0x00ff00)
@@ -66,7 +66,7 @@ async def vexlookup(productNo : str):
 @bot.command()
 async def tba(teamNo : str):
     """Finds a team on The Blue Alliance"""
-    teamName = tbaGetName(teamNo, TBA_APP_ID, TBA_AUTH_KEY)
+    teamName = libbot.tbaGetName(teamNo, TBA_APP_ID, TBA_AUTH_KEY)
     if teamName:
         await bot.say("TBA Link to team "+teamNo+", "+teamName+": https://thebluealliance.com/team/"+teamNo)
     else:
@@ -75,13 +75,13 @@ async def tba(teamNo : str):
 @bot.command()
 async def quote():
     """Gets a quote from CD Spotlight"""
-    quote = cdQuote()
+    quote = libbot.cdQuote()
     await bot.say(quote)
 
 @bot.command()
 async def robit():
     """Posts quotes from movie robots"""
-    quote = movieQuote(QUOTE_FILE)
+    quote = libbot.movieQuote(QUOTE_FILE)
     await bot.say(quote)
 
 @bot.command()
