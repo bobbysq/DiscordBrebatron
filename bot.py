@@ -103,6 +103,11 @@ async def rng(sides : int):
     else:
         await bot.say("How am I supposed to roll a "+ str(sides) +" sided die?")
 
+@bot.command() #shoutouts to arynbot
+async def hug(member : discord.Member):
+    """Hugs a member."""
+    await bot.say('*hugs {0.name}*'.format(member))
+
 @bot.command()
 async def source():
     """Links the source code"""
