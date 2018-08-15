@@ -1,6 +1,7 @@
 # Bobbysq's Discord bot
 
 Uses:
+
 * discord.py
 * BeautifulSoup  
 
@@ -11,6 +12,7 @@ I have added a requirements.txt so you can just cd to this repo, then run `pip i
 Before you run this bot, please change the config file options to change the TBA app ID to reflect your team number. You also need your Discord bot token and OpenWeatherMap API Key.
 
 Current Commands:
+
 * ~amlookup [part #]: Lookup a part on AndyMark
 * ~source: Links back here
 * ~tba: looks up teams from thebluealliance.com
