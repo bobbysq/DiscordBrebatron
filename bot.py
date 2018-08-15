@@ -12,6 +12,7 @@ TBA_APP_ID = config['DEFAULT']['TBAAppID']
 TBA_AUTH_KEY = config['DEFAULT']['TBAAuthKey']
 QUOTE_FILE = config['DEFAULT']['QuotesFile']
 CURRENT_GAME = config['DEFAULT']['CurrentGame']
+WEATHER_KEY = config['DEFAULT']['WeatherID']
 S_WORDS = ["stuff","spit","skit","ship","shirt","sport","short","script"] #TODO: put these into a CSV
 MF_WORDS =["Monday-Friday","monkey-fightin","megaphonin","mighty flippin","Marty flyin","meadow frolickin","metal forgin"]
 
@@ -107,6 +108,16 @@ async def rng(sides : int):
 async def hug(member : discord.Member):
     """Hugs a member."""
     await bot.say('*hugs {0.name}*'.format(member))
+
+@bot.command() #suggested by hook
+async def weather(zipCode : str, country = "us"):
+    """Looks up the weather of a zip code."""
+    weatherIn = libbot.weatherLookup(WEATHER_KEY, zipCode, country)
+    msg = discord.Embed(title="Weather in " + weatherIn.city)
+    msg.add_field(name="City",value=weatherIn.city)
+    msg.add_field(name="Weather",value=weatherIn.weather)
+    msg.add_field(name="Temperature",value=weatherIn.temperature)
+    await bot.say(embed=msg)
 
 @bot.command()
 async def source():

@@ -40,6 +40,29 @@ class vex_item:
             self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text())[:-15]
             self.price = prices[0].get_text()
 
+class weatherLookup:
+    def __init__(self, apiKey, zip, country):
+        weatherStr = ""
+        url = "/data/2.5/weather?zip="+ str(zip) + ","+ country + "&APPID="+apiKey
+        print(url)
+        c = http.client.HTTPSConnection("api.openweathermap.org")
+        c.request("GET", url)
+        response = c.getresponse()
+        weatherData = response.read().decode("utf-8")
+        #print(teamData)
+        data = json.loads(weatherData)
+        if country == "us":
+            temp = str(float(data['main']['temp']) * (9/5) - 459.67) + " F"
+        else:
+            temp = str(float(data['main']['temp']) - 273.15) + " C"
+        self.city = data['name']
+        for weathers in data['weather']:
+            weatherStr = weatherStr + ", " + weathers['description']
+        weatherStr = weatherStr[2:]
+        self.weather = weatherStr
+        #self.weather = "test"
+        self.temperature = temp
+
 def tbaGetName(team, appid, auth):
     try:
         url = "/api/v3/team/frc"+str(team)

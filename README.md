@@ -8,7 +8,7 @@ You can also install the lxml parser with `apt-get install python-lxml` if you w
 
 I have added a requirements.txt so you can just cd to this repo, then run `pip install -r requirements.txt`
 
-Before you run this bot, please change the config file options to change the TBA app ID to reflect your team number and set the MD5 hash of your name to be able to issue admin commands. You also need your Discord bot token.
+Before you run this bot, please change the config file options to change the TBA app ID to reflect your team number. You also need your Discord bot token and OpenWeatherMap API Key.
 
 Current Commands:
 * ~amlookup [part #]: Lookup a part on AndyMark
@@ -18,3 +18,5 @@ Current Commands:
 * ~tsimfd: Dispenses knowledge from the 2016 FIRST Championship
 * ~quote: Summons a quote from Chief Delphi
 * ~robit: Summons a quote from a famous movie robot
+* ~hug : Hugs a user
+* ~weather: Looks up the weather in an area
