@@ -52,9 +52,9 @@ class weatherLookup:
         #print(teamData)
         data = json.loads(weatherData)
         if country == "us":
-            temp = str(float(data['main']['temp']) * (9/5) - 459.67) + " F"
+            temp = str(round(float(data['main']['temp']) * (9/5) - 459.67, 2)) + " F"
         else:
-            temp = str(float(data['main']['temp']) - 273.15) + " C"
+            temp = str(round(float(data['main']['temp']) - 273.15, 2)) + " C"
         self.city = data['name']
         for weathers in data['weather']:
             weatherStr = weatherStr + ", " + weathers['description']
