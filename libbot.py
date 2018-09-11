@@ -58,7 +58,7 @@ class weatherLookup:
         self.city = data['name']
         for weathers in data['weather']:
             weatherStr = weatherStr + ", " + weathers['description']
-        weatherStr = weatherStr[2:]
+        weatherStr = weatherStr[2:] # Remove the beginning ", "
         self.weather = weatherStr
         #self.weather = "test"
         self.temperature = temp
@@ -104,6 +104,3 @@ def movieQuote(quotesFile):
     quote  = entry[random.randint(2,6)]
     return(quote + " - " + author + ", " + source)
 
-def reminder():
-    #TODO: AUTOMATE THIS
-    print("this thing doesn't even work yet, why are you calling it")

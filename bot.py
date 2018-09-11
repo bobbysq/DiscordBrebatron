@@ -32,9 +32,10 @@ async def on_ready():
     print('------')
     await bot.change_presence(game=discord.Game(name=CURRENT_GAME))
 
-@bot.command()
-async def amlookup(productNo : str):
+@bot.command(pass_context=True)
+async def amlookup(ctx, productNo : str):
     """Looks up a part on AndyMark."""
+    bot.send_typing(ctx.message.channel)
     part = libbot.andymark_item(productNo)
     if part.name:
         #print(part)
@@ -47,9 +48,10 @@ async def amlookup(productNo : str):
     else:
         await bot.say("Item not found.")
 
-@bot.command()
-async def vexlookup(productNo : str):
+@bot.command(pass_context=True)
+async def vexlookup(ctx, productNo : str):
     """Looks up a part on VEX Robotics."""
+    bot.send_typing(ctx.message.channel)
     part = libbot.vex_item(productNo)
     if part.name:
         #print(part)
