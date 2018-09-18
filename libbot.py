@@ -63,6 +63,24 @@ class weatherLookup:
         #self.weather = "test"
         self.temperature = temp
 
+class cdQuote: #Remember CDValentinesScraper? Well it's back, in chatbot form!
+    def __init__(self):
+        try:
+            url = 'https://www.chiefdelphi.com/forums/portal.php'
+            r = urllib.request.urlopen(url).read()
+            try:
+                soup = BeautifulSoup(r, "lxml")
+            except:
+                soup = BeautifulSoup(r, "html.parser")
+            quote = soup.find("td", class_="spotlight").contents
+
+            self.quote = quote[1]
+            self.author = quote[2].get_text()
+        except:
+            self.quote = None
+            self.author = None
+
+
 def tbaGetName(team, appid, auth):
     try:
         url = "/api/v3/team/frc"+str(team)
@@ -78,21 +96,21 @@ def tbaGetName(team, appid, auth):
     except:
         return(None)
 
-def cdQuote(): #Remember CDValentinesScraper? Well it's back, in chatbot form!
-    try:
-        url = 'https://www.chiefdelphi.com/forums/portal.php'
-        r = urllib.request.urlopen(url).read()
-        try:
-            soup = BeautifulSoup(r, "lxml")
-        except:
-            soup = BeautifulSoup(r, "html.parser")
-        quote = soup.find("td", class_="spotlight").contents
+# def cdQuote(): #Remember CDValentinesScraper? Well it's back, in chatbot form!
+#     try:
+#         url = 'https://www.chiefdelphi.com/forums/portal.php'
+#         r = urllib.request.urlopen(url).read()
+#         try:
+#             soup = BeautifulSoup(r, "lxml")
+#         except:
+#             soup = BeautifulSoup(r, "html.parser")
+#         quote = soup.find("td", class_="spotlight").contents
 
-        cleanedQuote=quote[1]
-        author = quote[2].get_text()
-        return(cleanedQuote+author)
-    except:
-        return(None)
+#         cleanedQuote=quote[1]
+#         author = quote[2].get_text()
+#         return(cleanedQuote+author)
+#     except:
+#         return(None)
 
 def movieQuote(quotesFile):
     csvfile = open(quotesFile, newline='')

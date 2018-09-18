@@ -82,7 +82,12 @@ async def tba(teamNo : str):
 async def quote():
     """Gets a quote from CD Spotlight"""
     quote = libbot.cdQuote()
-    await bot.say(quote)
+    msg = discord.Embed(title="Chief Delphi Quote", color = 0xff8800)
+    print(quote.quote)
+    print(quote.author)
+    msg.add_field(name=quote.quote[:-2], value=quote.author)
+    print(msg)
+    await bot.say(embed=msg)
 
 @bot.command()
 async def robit():
