@@ -22,7 +22,7 @@ class andymark_item:
             self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text()).strip()
             #print(price[0].text)
             #money = price[0].text.encode('utf8','ignore')
-            self.price = prices[0]["content"] #just get the price we want
+            self.price = float(prices[0]["content"]) #just get the price we want
 
 class vex_item:
     def __init__(self, partnumber):

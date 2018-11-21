@@ -42,7 +42,8 @@ async def amlookup(ctx, productNo : str):
         msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x273895)
         msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
         msg.add_field(name="Name",value=part.name)
-        msg.add_field(name="Price",value=part.price)
+        formattedPrice = "$" + "{0:.2f}".format(part.price)
+        msg.add_field(name="Price", value = formattedPrice)
         await bot.say(embed=msg)
         # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
     else:
