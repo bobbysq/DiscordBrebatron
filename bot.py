@@ -32,22 +32,21 @@ async def on_ready():
     print('------')
     await bot.change_presence(game=discord.Game(name=CURRENT_GAME))
 
-# @bot.command(pass_context=True)
-# async def amlookup(ctx, productNo : str):
-#     """Looks up a part on AndyMark."""
-#     bot.send_typing(ctx.message.channel)
-#     part = libbot.andymark_item(productNo)
-#     if part.name:
-#         #print(part)
-#         msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x273895)
-#         msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
-#         msg.add_field(name="Name",value=part.name)
-#         msg.add_field(name="Price",value=part.price)
-#         await bot.say(embed=msg)
-#         # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
-#     else:
-#         await bot.say("Item not found.")
-# PRESS F TO PAY RESPECTS
+@bot.command(pass_context=True)
+async def amlookup(ctx, productNo : str):
+    """Looks up a part on AndyMark."""
+    bot.send_typing(ctx.message.channel)
+    part = libbot.andymark_item(productNo)
+    if part.name:
+        #print(part)
+        msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x273895)
+        msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
+        msg.add_field(name="Name",value=part.name)
+        msg.add_field(name="Price",value=part.price)
+        await bot.say(embed=msg)
+        # await bot.say("The item you looked up is a "+part.name+". It costs "+part.price+".")
+    else:
+        await bot.say("Item not found.")
 
 @bot.command(pass_context=True)
 async def vexlookup(ctx, productNo : str):
