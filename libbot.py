@@ -16,7 +16,8 @@ class andymark_item:
             except:
                 soup = BeautifulSoup(r, "html.parser")
             prices = soup.find_all("meta", {"itemprop" : "price"}) #get all prices on the page
-            self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text()).strip()
+            #title = re.sub(r'\([^)]*\)', '', soup.title.get_text()).strip()
+            self.name = soup.title.get_text().strip()[:-16]
             #print(price[0].text)
             #money = price[0].text.encode('utf8','ignore')
             self.price = float(prices[0]["content"]) #just get the price we want
