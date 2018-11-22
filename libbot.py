@@ -9,20 +9,20 @@ import random
 class andymark_item:
     def __init__(self, partnumber):
         self.url = 'http://www.andymark.com/am-'+ partnumber
-        r = urllib.request.urlopen(self.url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
         try:
-            soup = BeautifulSoup(r, "lxml")
-        except:
-            soup = BeautifulSoup(r, "html.parser")
-        prices = soup.find_all("meta", {"itemprop" : "price"}) #get all prices on the page
-        if soup.title.get_text()=="AndyMark Robot Parts Kits Mecanum Omni Wheels":
-            self.name = None
-            self.price = None
-        else:
+            r = urllib.request.urlopen(self.url).read() #TODO: Change this to use http.client so we don't have 2 libraries doing the same thing
+            try:
+                soup = BeautifulSoup(r, "lxml")
+            except:
+                soup = BeautifulSoup(r, "html.parser")
+            prices = soup.find_all("meta", {"itemprop" : "price"}) #get all prices on the page
             self.name = re.sub(r'\([^)]*\)', '', soup.title.get_text()).strip()
             #print(price[0].text)
             #money = price[0].text.encode('utf8','ignore')
             self.price = float(prices[0]["content"]) #just get the price we want
+        except:
+            self.name = None
+            self.price = None
 
 class vex_item:
     def __init__(self, partnumber):
