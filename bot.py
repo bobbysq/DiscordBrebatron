@@ -131,7 +131,7 @@ async def weather(zipCode : str, country = "us"):
 @bot.command()
 async def manual(ruleNo = ""):
     """Looks up a rule in the game manual"""
-    rule = libbot.ruleLookup(ruleNo, MANUAL_FILE)
+    rule = libbot.ruleLookup(ruleNo.upper(), MANUAL_FILE)
     url = "https://firstfrc.blob.core.windows.net/frc2019/Manual/HTML/2019FRCGameSeasonManual.htm#" + ruleNo
     await bot.say(rule + "\n" + url)
 
