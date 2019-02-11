@@ -3,3 +3,4 @@ config.ini
 RobotQuotes.csv
 .vscode
 *.html
+*_files/

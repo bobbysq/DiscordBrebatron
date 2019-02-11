@@ -97,18 +97,19 @@ def tbaGetName(team, appid, auth):
     except:
         return(None)
 
-def ruleLookup(rule, manualFile):
+def ruleLookup(ruleNo, manualFile):
     try:
-        with open(r'FIRST Robotics Competition 2018 Game and Season Manual.html','r') as f:
+        with open(manualFile,'r') as f:
             try:
                 soup = BeautifulSoup(f, "lxml")
             except:
                 soup = BeautifulSoup(f, "html.parser")
-        rule = soup.find_all("a", attrs = {"name" : rule}) #find an <a> tag with the rule number
+        rule = soup.find_all("a", attrs = {"name" : ruleNo}) #find an <a> tag with the rule number
         ruleTexts = rule[0].parent.strings
         endMsg = ""
-        for text in ruleTexts:
-            endMsg = endMsg + text
+        for text in ruleTexts: #some rules come in chunks, so .string doesn't quite work
+            #print(text.encode("utf-8"))
+            endMsg = endMsg + text.replace("\n", " ") #delete any stray newlines
         return(endMsg)
     except:
         return(None)

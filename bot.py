@@ -13,6 +13,7 @@ TBA_AUTH_KEY = config['DEFAULT']['TBAAuthKey']
 QUOTE_FILE = config['DEFAULT']['QuotesFile']
 CURRENT_GAME = config['DEFAULT']['CurrentGame']
 WEATHER_KEY = config['DEFAULT']['WeatherID']
+MANUAL_FILE = config['DEFAULT']['ManualFile']
 S_WORDS = ["stuff","spit","skit","ship","shirt","sport","short","script"] #TODO: put these into a CSV
 MF_WORDS =["Monday-Friday","monkey-fightin","megaphonin","mighty flippin","Marty flyin","meadow frolickin","metal forgin"]
 
@@ -130,8 +131,9 @@ async def weather(zipCode : str, country = "us"):
 @bot.command()
 async def manual(ruleNo = ""):
     """Looks up a rule in the game manual"""
+    rule = libbot.ruleLookup(ruleNo, MANUAL_FILE)
     url = "https://firstfrc.blob.core.windows.net/frc2019/Manual/HTML/2019FRCGameSeasonManual.htm#" + ruleNo
-    await bot.say(url)
+    await bot.say(rule + "\n" + url)
 
 
 @bot.command()
