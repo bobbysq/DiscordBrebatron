@@ -40,7 +40,7 @@ async def amlookup(ctx, productNo : str):
     if part.name:
         #print(part)
         msg = discord.Embed(title="AndyMark Product", url = part.url, color = 0x273895)
-        msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
+        #msg.set_thumbnail(url="http://cdn3.volusion.com/vyfsn.knvgw/v/vspfiles/photos/am-" + productNo + "-1.jpg")
         msg.add_field(name="Name",value=part.name)
         formattedPrice = "$" + "{0:.2f}".format(part.price)
         msg.add_field(name="Price", value = formattedPrice)
@@ -79,16 +79,16 @@ async def tba(teamNo : str):
     else:
         await bot.say("TBA Link to team: https://thebluealliance.com/team/"+teamNo)
 
-@bot.command()
-async def quote():
-    """Gets a quote from CD Spotlight"""
-    quote = libbot.cdQuote()
-    msg = discord.Embed(title="Chief Delphi Quote", color = 0xff8800)
-    print(quote.quote)
-    print(quote.author)
-    msg.add_field(name=quote.quote[:-2], value=quote.author)
-    print(msg)
-    await bot.say(embed=msg)
+# @bot.command() #Depricated until Brandon uploads the Spotlight backup
+# async def quote():
+#     """Gets a quote from CD Spotlight"""
+#     quote = libbot.cdQuote()
+#     msg = discord.Embed(title="Chief Delphi Quote", color = 0xff8800)
+#     print(quote.quote)
+#     print(quote.author)
+#     msg.add_field(name=quote.quote[:-2], value=quote.author)
+#     print(msg)
+#     await bot.say(embed=msg)
 
 @bot.command()
 async def robit():
@@ -126,6 +126,13 @@ async def weather(zipCode : str, country = "us"):
     msg.add_field(name="Weather",value=weatherIn.weather)
     msg.add_field(name="Temperature",value=weatherIn.temperature)
     await bot.say(embed=msg)
+
+@bot.command()
+async def manual(ruleNo = ""):
+    """Looks up a rule in the game manual"""
+    url = "https://firstfrc.blob.core.windows.net/frc2019/Manual/HTML/2019FRCGameSeasonManual.htm#" + ruleNo
+    await bot.say(url)
+
 
 @bot.command()
 async def source():

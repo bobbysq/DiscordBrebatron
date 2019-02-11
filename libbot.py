@@ -97,6 +97,22 @@ def tbaGetName(team, appid, auth):
     except:
         return(None)
 
+def ruleLookup(rule, manualFile):
+    try:
+        with open(r'FIRST Robotics Competition 2018 Game and Season Manual.html','r') as f:
+            try:
+                soup = BeautifulSoup(f, "lxml")
+            except:
+                soup = BeautifulSoup(f, "html.parser")
+        rule = soup.find_all("a", attrs = {"name" : rule}) #find an <a> tag with the rule number
+        ruleTexts = rule[0].parent.strings
+        endMsg = ""
+        for text in ruleTexts:
+            endMsg = endMsg + text
+        return(endMsg)
+    except:
+        return(None)
+
 # def cdQuote(): #Remember CDValentinesScraper? Well it's back, in chatbot form!
 #     try:
 #         url = 'https://www.chiefdelphi.com/forums/portal.php'
